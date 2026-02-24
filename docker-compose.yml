@@ -1,0 +1,49 @@
+services:
+
+  php:
+    build: .
+    container_name: php3
+    ports:
+      - "9000:9090"
+    volumes:
+      - "./src:/var/www/html"
+    depends_on:
+      - postgres
+    command: php artisan serve --host=0.0.0.0 --port=9090
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres3
+    restart: always
+    environment:
+      POSTGRES_DB: "anonymous"
+      POSTGRES_USER: "hyk"
+      POSTGRES_PASSWORD: "2006"
+    ports:
+      - "2005:3216"
+    volumes:
+      - pgtables:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin3
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "hyk@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "2006"
+    ports:
+      - "6060:90"
+    depends_on:
+      - postgres
+
+  puml:
+    image: plantuml/plantuml-server:jetty
+    container_name: puml3
+    restart: always
+    ports:
+      - "1478:9090"
+    volumes:
+      - "./uml:/var/www/html/uml"
+
+volumes:
+  pgtables:
