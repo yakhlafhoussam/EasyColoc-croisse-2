@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('max_members');
-            $table->enum('status', [0, 1]);
+            $table->enum('status', [0, 1])->default(1);
             $table->string('country');
             $table->string('city');
             $table->text('desc');

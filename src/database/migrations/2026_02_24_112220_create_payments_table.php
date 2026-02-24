@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
             $table->float('amount');
-            $table->enum('status', [0, 1]);
+            $table->enum('status', [0, 1, 2])->default(0);
             $table->timestamp('payment_date');
             $table->timestamps();
         });
