@@ -1,4 +1,4 @@
-# 🏠 Colocation Management System — README
+# 🏠 Colocation Management System
 
 ## 📌 Project Overview
 
