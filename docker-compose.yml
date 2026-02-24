@@ -32,18 +32,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: "hyk@gmail.com"
       PGADMIN_DEFAULT_PASSWORD: "2006"
     ports:
-      - "6060:90"
+      - "6060:80"
     depends_on:
       - postgres
-
-  puml:
-    image: plantuml/plantuml-server:jetty
-    container_name: puml3
-    restart: always
-    ports:
-      - "1478:9090"
-    volumes:
-      - "./uml:/var/www/html/uml"
 
 volumes:
   pgtables:
