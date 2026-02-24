@@ -118,9 +118,8 @@ Laravel automatically generates:
 
 ### 🧩 Use Case Diagram
 
-```
 ![use case diagram](/uml/usecase.png)
-```
+
 
 ---
 
@@ -128,9 +127,8 @@ Laravel automatically generates:
 
 📷 *(Insert Class Diagram image here)*
 
-```
 ![Class Diagram](/uml/class.png)
-```
+
 
 ---
 
