@@ -8,14 +8,9 @@ RUN apk add --no-cache \
     unzip \
     zip \
     postgresql-dev \
-    nodejs \
-    npm \
     build-base \
     autoconf \
-    re2c \
-    libtool \
     make \
-    pkgconfig \
     zlib-dev \
     oniguruma-dev \
     libxml2-dev

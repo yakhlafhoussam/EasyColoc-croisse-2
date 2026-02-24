@@ -16,7 +16,7 @@ services:
     container_name: postgres3
     restart: always
     environment:
-      POSTGRES_DB: "anonymous"
+      POSTGRES_DB: "easycoloc"
       POSTGRES_USER: "hyk"
       POSTGRES_PASSWORD: "2006"
     ports:
