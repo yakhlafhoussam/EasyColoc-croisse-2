@@ -11,10 +11,7 @@ This project is developed using:
 * **Docker**
 * **PostgreSQL**
 * **Tailwind CSS**
-* MVC Architecture
-
-⚠️ This project **does not use REST API**.
-The application works using Laravel Blade views and server-side rendering.
+* **MVC Architecture**
 
 ---
 
@@ -122,7 +119,7 @@ Laravel automatically generates:
 ### 🧩 Use Case Diagram
 
 ```
-/../uml/useCase.png
+![use case diagram](/uml/usecase.png)
 ```
 
 ---
@@ -132,7 +129,7 @@ Laravel automatically generates:
 📷 *(Insert Class Diagram image here)*
 
 ```
-/../uml/diagrammeClass.png
+![Class Diagram](/uml/class.png)
 ```
 
 ---
@@ -223,32 +220,6 @@ Application available at:
 
 ```
 http://localhost:9090
-```
-
----
-
-## 📁 Project Structure
-
-```
-app/
- ├── Models
- ├── Http/Controllers
- ├── Requests
-
-database/
- ├── migrations
- ├── seeders
-
-resources/
- ├── views
- ├── css
- └── js
-
-routes/
- └── web.php
-
-docker/
-docker-compose.yml
 ```
 
 ---
