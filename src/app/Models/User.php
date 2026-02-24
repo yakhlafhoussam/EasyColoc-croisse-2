@@ -18,8 +18,18 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
+        'profile_image',
+        'gender',
+        'country',
+        'city',
+        'cin',
+        'birth_date',
+        'type_occupation',
+        'occupation',
         'email',
+        'phone',
         'password',
     ];
 
@@ -44,5 +54,40 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class, 'payer_id');
+    }
+
+    public function paymentsSent()
+    {
+        return $this->hasMany(Payment::class, 'payer_id');
+    }
+
+    public function paymentsReceived()
+    {
+        return $this->hasMany(Payment::class, 'receiver_id');
+    }
+
+    public function ratingsGiven()
+    {
+        return $this->hasMany(Rating::class, 'from_user_id');
+    }
+
+    public function ratingsReceived()
+    {
+        return $this->hasMany(Rating::class, 'to_user_id');
+    }
+
+    public function invitationsSent()
+    {
+        return $this->hasMany(Invitation::class, 'sender_id');
     }
 }
