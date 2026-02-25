@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'permission' => App\Http\Middleware\CheckPermission::class,
             'auth.custom' => App\Http\Middleware\AuthMiddleware::class,
+            'profile' => App\Http\Middleware\CheckProfile::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

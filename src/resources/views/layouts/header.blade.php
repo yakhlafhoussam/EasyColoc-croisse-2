@@ -25,10 +25,10 @@
         @endguest
 
         @auth
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('logout') }}"
                class="px-5 py-2.5 text-sm font-semibold text-white
-               bg-green-600 rounded-full">
-                Dashboard
+               bg-red-600 rounded-full">
+                Logout
             </a>
         @endauth
 

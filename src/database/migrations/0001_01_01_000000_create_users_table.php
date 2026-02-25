@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('profile_image');
-            $table->enum('gender', [0, 1]);
-            $table->string('country');
-            $table->string('city');
-            $table->string('cin')->unique();
-            $table->date('birth_date');
-            $table->enum('type_occupation', ['work', 'student', 'other']);
-            $table->string('occupation');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->enum('is_admin', [0, 1])->default(0);
-            $table->enum('is_banned', [0, 1])->default(0);
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('profile_image')->nullable();
+            $table->enum('gender', [0, 1])->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('cin')->unique()->nullable();
+            $table->date('birth_date')->nullable();
+            $table->enum('type_occupation', ['work', 'student', 'other'])->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->enum('is_admin', [0, 1])->default(0)->nullable();
+            $table->enum('is_banned', [0, 1])->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

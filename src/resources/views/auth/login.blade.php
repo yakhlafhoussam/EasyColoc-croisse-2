@@ -148,7 +148,7 @@ OR
 </div>
 
 <!-- GOOGLE LOGIN -->
-<a href="#"
+<a href="/auth/google"
 class="flex items-center justify-center gap-3 w-full
 border py-3 rounded-xl mb-6
 hover:bg-gray-50 transition shadow">

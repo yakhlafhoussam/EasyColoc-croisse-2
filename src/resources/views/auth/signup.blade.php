@@ -101,7 +101,7 @@ Join EasyColoc in seconds
 
 
 <!-- GOOGLE -->
-<a href="#"
+<a href="/auth/google"
 class="flex items-center justify-center gap-3 border rounded-xl py-3 mb-8 hover:bg-gray-50 transition">
 
 <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" class="w-6">
