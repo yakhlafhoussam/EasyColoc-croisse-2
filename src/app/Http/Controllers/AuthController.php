@@ -120,30 +120,42 @@ class AuthController extends Controller
     {
         $googleUser = Socialite::driver('google')->user();
 
-        $admin = User::get();
+        $user = User::where('google_id', $googleUser->getId())
+            ->orWhere('email', $googleUser->getEmail())
+            ->first();
 
-        if (count($admin) == 0) {
-            $user = User::updateOrCreate(
-                ['email' => $googleUser->getEmail()],
-                [
-                    'firstname' => $googleUser->user['given_name'],
-                    'lastname'  => $googleUser->user['family_name'],
-                    'profile_image' => $googleUser->getAvatar(),
-                    'google_id' => $googleUser->getId(),
-                    'is_admin' => 1
-                ]
-            );
+        if (!$user) {
+            $admin = User::get();
+
+            if (count($admin) == 0) {
+                $user = User::updateOrCreate(
+                    ['email' => $googleUser->getEmail()],
+                    [
+                        'firstname' => $googleUser->user['given_name'],
+                        'lastname'  => $googleUser->user['family_name'],
+                        'profile_image' => $googleUser->getAvatar(),
+                        'google_id' => $googleUser->getId(),
+                        'is_admin' => 1
+                    ]
+                );
+            } else {
+                $user = User::updateOrCreate(
+                    ['email' => $googleUser->getEmail()],
+                    [
+                        'firstname' => $googleUser->user['given_name'],
+                        'lastname'  => $googleUser->user['family_name'],
+                        'profile_image' => $googleUser->getAvatar(),
+                        'google_id' => $googleUser->getId(),
+                    ]
+                );
+            }
         } else {
-            $user = User::updateOrCreate(
-                ['email' => $googleUser->getEmail()],
-                [
-                    'firstname' => $googleUser->getName(),
-                    'profile_image' => $googleUser->getAvatar(),
-                    'google_id' => $googleUser->getId(),
-                ]
-            );
+            if (!$user->google_id) {
+                $user->google_id = $googleUser->getId();
+                $user->save();
+            }
         }
-
+        
         Auth::login($user);
 
         return redirect('/');
