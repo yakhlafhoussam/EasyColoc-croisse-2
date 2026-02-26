@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('profile_image')->nullable();
-            $table->enum('gender', [0, 1])->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('cin')->unique()->nullable();
