@@ -20,6 +20,11 @@ class Colocation extends Model
         return $this->hasMany(Membership::class);
     }
 
+    public function balances()
+    {
+        return $this->hasMany(Balance::class);
+    }
+
     public function categories()
     {
         return $this->hasMany(Categorie::class);

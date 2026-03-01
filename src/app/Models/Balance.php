@@ -4,23 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Membership extends Model
+class Balance extends Model
 {
     protected $fillable = [
         'user_id',
         'colocation_id',
-        'join_at',
-        'left_at',
-        'role',
+        'balance'
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'join_at' => 'datetime',
-            'left_at' => 'datetime',
-        ];
-    }
 
     public function user()
     {

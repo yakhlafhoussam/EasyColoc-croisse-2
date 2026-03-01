@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
+use App\Models\Categorie;
+use App\Models\Colocation;
+use App\Models\Expense;
 use App\Models\Membership;
+use App\Models\Payment;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,44 +19,33 @@ class HomeController extends Controller
     {
         $user = User::where('id', Auth::id())->first();
 
-        $membership = Membership::with('colocation')
-            ->where('user_id', $user->id)
-            ->whereNull('left_at')
-            ->first();
+        $membership = $user->memberships()->whereNull('left_at')->first();
 
-        $roommates = collect();
-
-        if ($membership) {
-
-            $roommates = Membership::with('user')
-                ->where('colocation_id', $membership->colocation_id)
-                ->where('user_id', '!=', $user->id)
-                ->whereNull('left_at')
-                ->get()
-                ->pluck('user');
+        if (!$membership) {
+            return view('user.index');
         }
 
-        $history = Membership::with('colocation')
-            ->where('user_id', $user->id)
-            ->orderByDesc('join_at')
-            ->get();
+        $owner = Membership::where('role', 1)->first('user_id');
 
-        $ratings = Rating::with([
-            'fromUser',
-            'colocation'
-        ])->where('to_user_id', $user->id)
-            ->latest()
-            ->get();
-        
-        $averageRating = round($user->ratingsReceived()->avg('stars'), 1);
+        $colocation = $membership->colocation;
 
-        return view('user.index', compact(
-            'user',
-            'membership',
-            'roommates',
-            'history',
-            'ratings',
-            'averageRating'
-        ));
+        $members = $colocation->memberships()->whereNull('left_at')->with('user')->get()->map(fn($m) => $m->user);
+
+        $memberss = $colocation->memberships()->with('user')->get()->map(fn($m) => $m->user);
+
+        $expenses = Expense::with('category')
+            ->where('colocation_id', $colocation->id)
+            ->get()->sortByDesc('created_at');
+
+        $bals = Balance::where('colocation_id', $colocation->id)->where('status', 1)->get();
+
+        $balances = [];
+        foreach ($bals as $bal) {
+            $balances[ucfirst(substr($bal->user->firstname, 0, 1)) . '.' . ucwords($bal->user->lastname)] = $bal->balance;
+        }
+
+        $category = Categorie::where('colocation_id', Membership::where('user_id', Auth::id())->first('colocation_id')->colocation_id)->get();
+
+        return view('user.index', compact('user', 'colocation', 'members', 'memberss', 'expenses', 'balances', 'owner', 'category'));
     }
 }

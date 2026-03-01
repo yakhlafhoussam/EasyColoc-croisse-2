@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     protected $fillable = [
+        'from_user_id',
         'to_user_id',
         'stars',
         'comment',
+        'colocation_id'
     ];
 
     public function fromUser()

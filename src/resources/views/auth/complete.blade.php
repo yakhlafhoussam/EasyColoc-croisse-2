@@ -131,30 +131,30 @@
                     <input value="{{ old('profile_image', $user->profile_image ?? '') }}" id="profile_image"
                         name="profile_image" placeholder="Profile Image URL (Optionel)" class="input md:col-span-2">
 
-                    <select value="{{ old('gender') }}" name="gender" class="input">
+                    <select name="gender" class="input">
                         <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
                     </select>
 
                     <input value="{{ old('cin') }}" name="cin" placeholder="CIN" class="input">
-                    <select value="{{ old('country') }}" id="country" name="country" class="input">
-                        <option value="">Select Country</option>
+                    <select id="country" name="country" class="input">
+                        <option value="{{ old('country') }}">Select Country</option>
 
                     </select>
 
-                    <select value="{{ old('city') }}" id="city" name="city" class="input">
-                        <option value="">Select City</option>
+                    <select id="city" name="city" class="input">
+                        <option value="{{ old('city') }}">Select City</option>
 
                     </select>
 
                     <input value="{{ old('birth_date') }}" type="date" name="birth_date" class="input">
 
-                    <select value="{{ old('type_occupation') }}" name="type_occupation" class="input">
+                    <select name="type_occupation" class="input">
                         <option value="">Occupation Type</option>
-                        <option value="work">Work</option>
-                        <option value="student">Study</option>
-                        <option value="other">Other</option>
+                        <option value="work" {{ old('type_occupation') == 'work' ? 'selected' : '' }}>Work</option>
+                        <option value="student" {{ old('type_occupation') == 'student' ? 'selected' : '' }}>Study</option>
+                        <option value="other" {{ old('type_occupation') == 'other' ? 'selected' : '' }}>Other</option>
                     </select>
 
                     <input value="{{ old('occupation') }}" name="occupation" placeholder="Occupation"

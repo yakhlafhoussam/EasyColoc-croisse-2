@@ -31,7 +31,8 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'is_admin'
+        'is_admin',
+        'is_banned'
     ];
 
     /**
@@ -60,6 +61,11 @@ class User extends Authenticatable
     public function memberships()
     {
         return $this->hasMany(Membership::class);
+    }
+
+    public function balances()
+    {
+        return $this->hasMany(Balance::class);
     }
 
     public function expenses()

@@ -24,6 +24,10 @@ class CheckProfile
             return redirect()->route('complete-profile');
         }
 
+        if (!Auth::user()->email_verified_at) {
+            return redirect()->route('verifier-profile');
+        }
+
         return $next($request);
     }
 }

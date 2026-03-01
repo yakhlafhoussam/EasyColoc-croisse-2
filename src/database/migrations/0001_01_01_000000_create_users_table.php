@@ -29,6 +29,7 @@ return new class extends Migration
             $table->enum('is_banned', [0, 1])->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

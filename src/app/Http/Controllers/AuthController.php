@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
+use App\Models\Invitation;
+use App\Models\Membership;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +28,7 @@ class AuthController extends Controller
     public function submitLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
@@ -33,11 +36,35 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            if (session()->has('invite_token')) {
+                $token = session('invite_token');
 
+                $invitation = Invitation::where('token', $token)->first();
+
+                Membership::create([
+                    'user_id' => Auth::id(),
+                    'colocation_id' => $invitation->colocation_id,
+                    'role' => 0,
+                    'join_at' => now(),
+                ]);
+
+                Balance::create([
+                    'user_id' => Auth::id(),
+                    'colocation_id' => $invitation->colocation_id,
+                ]);
+
+                $invitation->update([
+                    'status' => 1
+                ]);
+
+                return redirect('/')->with('success', 'Invitation accepted');
+
+                session()->forget('invite_token');
+            }
             return redirect()->route('home');
         }
         return back()->withErrors([
-            'email' => 'Email ou mot de passe incorrect .'
+            'email' => 'Email or password incorrect.'
         ])->onlyInput('email');
     }
 
@@ -56,19 +83,18 @@ class AuthController extends Controller
     public function submitSignup(Request $request)
     {
         $request->validate([
-            'firstname' => 'required|min:2',
-            'lastname' => 'required|min:2',
-            'profile_image' => 'url',
+            'firstname' => 'required|min:2|max:50',
+            'lastname' => 'required|min:2|max:50',
             'gender' => 'required|in:male,female',
-            'cin' => 'required|min:6|unique:users,cin',
-            'country' => 'required|min:2',
-            'city' => 'required|min:3',
+            'cin' => 'required|min:6|unique:users,cin|max:50',
+            'country' => 'required|min:2|max:50',
+            'city' => 'required|min:3|max:50',
             'birth_date' => 'required|date|before:today',
             'type_occupation' => 'required|in:work,student',
-            'occupation' => 'required|min:5',
-            'email' => 'required|unique:users,email',
-            'phone' => 'required|min:10|unique:users,phone',
-            'password' => 'required|min:8|confirmed',
+            'occupation' => 'required|min:2|max:50',
+            'email' => 'required|unique:users,email|max:50',
+            'phone' => 'required|min:10|unique:users,phone|max:50',
+            'password' => 'required|min:8|max:50|confirmed',
         ]);
 
         $admin = User::get();
@@ -108,7 +134,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Signup completed successfully!');;
     }
 
     public function redirect()
@@ -155,8 +181,32 @@ class AuthController extends Controller
                 $user->save();
             }
         }
-        
+
         Auth::login($user);
+
+        if (session()->has('invite_token')) {
+            $token = session()->pull('invite_token');
+
+            $invitation = Invitation::where('token', $token)->first();
+
+            Membership::create([
+                'user_id' => Auth::id(),
+                'colocation_id' => $invitation->colocation_id,
+                'role' => 0,
+                'join_at' => now(),
+            ]);
+
+            Balance::create([
+                'user_id' => Auth::id(),
+                'colocation_id' => $invitation->colocation_id,
+            ]);
+
+            $invitation->update([
+                'status' => 1
+            ]);
+
+            return redirect('/')->with('success', 'Invitation accepted');
+        }
 
         return redirect('/');
     }
