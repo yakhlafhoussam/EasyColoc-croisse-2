@@ -97,6 +97,11 @@
                         @endif
                     </h3>
 
+                    <a href="/edit" class="font-bold mb-5 text-lg bg-yellow-400 rounded-full flex justify-center items-center text-white">
+                        <i class="fa-solid fa-user-pen"></i>
+                        Edit
+                    </a>
+
                     <div class="space-y-3 text-sm">
 
                         {{-- Full Name --}}

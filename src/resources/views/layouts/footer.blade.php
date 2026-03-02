@@ -23,15 +23,15 @@
                 <div class="space-y-3 text-sm text-gray-500">
                     <div class="flex items-center gap-3">
                         <i class="fas fa-envelope text-indigo-400 w-5"></i>
-                        <a href="mailto:support@easycoloc.com" class="hover:text-indigo-600 transition">support@easycoloc.com</a>
+                        <a href="mailto:ykeasycoloc@gmail.com" class="hover:text-indigo-600 transition">ykeasycoloc@gmail.com</a>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="fas fa-phone-alt text-indigo-400 w-5"></i>
-                        <a href="tel:+33123456789" class="hover:text-indigo-600 transition">+33 1 23 45 67 89</a>
+                        <a href="tel:+212615940605" class="hover:text-indigo-600 transition">+212 6 15 94 06 05</a>
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="fas fa-map-marker-alt text-indigo-400 w-5"></i>
-                        <span>Paris, France</span>
+                        <span>Safi, Morocco</span>
                     </div>
                 </div>
             </div>
@@ -89,19 +89,16 @@
                 <div class="flex flex-col items-center md:items-start gap-4">
                     <h4 class="font-semibold text-gray-700">Follow us on social media</h4>
                     <div class="flex gap-4">
-                        <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Facebook">
+                        <a href="https://www.facebook.com/houssam.yakhlaf/" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Facebook">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Instagram">
+                        <a href="https://www.instagram.com/houssam__yakhlaf" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Instagram">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="X (Twitter)">
-                            <i class="fab fa-x-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="LinkedIn">
+                        <a href="https://linkedin.com/in/houssam-yakhlaf-0b3677319" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="LinkedIn">
                             <i class="fab fa-linkedin-in text-xl"></i>
                         </a>
-                        <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="GitHub">
+                        <a href="https://github.com/yakhlafhoussam" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="GitHub">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                         <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="YouTube">
@@ -110,7 +107,7 @@
                         <a href="#" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="TikTok">
                             <i class="fab fa-tiktok text-xl"></i>
                         </a>
-                        <a href="mailto:support@easycoloc.com" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Email">
+                        <a href="mailto:ykeasycoloc@gmail.com" class="w-12 h-12 rounded-2xl bg-white shadow-md hover:shadow-xl flex items-center justify-center text-indigo-600 hover:text-white hover:bg-indigo-600 transition-all duration-300 transform hover:scale-110" title="Email">
                             <i class="fas fa-envelope text-xl"></i>
                         </a>
                     </div>

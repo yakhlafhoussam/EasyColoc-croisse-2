@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 use function Symfony\Component\Clock\now;
 
@@ -127,5 +128,54 @@ class ProfileController extends Controller
         } else {
             return redirect('/verifier-profile')->with('error', 'The code is incorrect we send another one!');
         }
+    }
+
+    public function edit()
+    {
+        $user = User::find(Auth::id());
+        return view('auth.edit', compact('user'));
+    }
+
+    public function editSubmit(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required|min:2|max:50',
+            'lastname' => 'required|min:2|max:50',
+            'gender' => 'required|in:male,female',
+            'phone' => [
+                'required',
+                'min:6',
+                'max:50',
+                Rule::unique('users', 'phone')->ignore(Auth::id()),
+            ],
+
+            'cin' => [
+                'required',
+                'min:8',
+                'max:50',
+                Rule::unique('users', 'cin')->ignore(Auth::id()),
+            ],
+            'country' => 'required|min:2',
+            'city' => 'required|min:3',
+            'birth_date' => 'required|date|before:today',
+            'type_occupation' => 'required|in:work,student',
+            'occupation' => 'required|min:2|max:50',
+        ]);
+
+        User::where('id', Auth::id())->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'profile_image' => $request->profile_image,
+            'gender' => $request->gender,
+            'cin' => $request->cin,
+            'country' => $request->country,
+            'city' => $request->city,
+            'birth_date' => $request->birth_date,
+            'type_occupation' => $request->type_occupation,
+            'occupation' => $request->occupation,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect('/')->with('success', 'The profile was edited successfully!');
     }
 }

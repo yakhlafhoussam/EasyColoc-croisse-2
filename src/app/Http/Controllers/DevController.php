@@ -10,7 +10,7 @@ class DevController extends Controller
 {
     public function index()
     {
-        $developer = User::where('id', Auth::id())->first();
+        $developer = User::where('id', 1)->first();
         return view('admin.developer', compact('developer'));
     }
 }

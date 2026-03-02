@@ -30,6 +30,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware(['auth.custom', 'profile'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+    Route::post('/edit', [ProfileController::class, 'editSubmit']);
     Route::get('/newcolo', [NewColocationController::class, 'index'])->name('colocation');
     Route::post('/newcolo', [NewColocationController::class, 'store']);
     Route::post('/invitation', [InvitationController::class, 'sendInvitation']);

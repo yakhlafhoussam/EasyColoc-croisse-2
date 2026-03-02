@@ -58,8 +58,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .error-text {
@@ -84,12 +91,12 @@
                 <img src="{{ asset('image/money.png') }}" class="w-3/4 float" alt="complete profile">
 
                 <h2 class="text-4xl font-bold text-center">
-                    Complete Your Profile
+                    Edit Your Profile
                 </h2>
 
                 <p class="text-center opacity-90 max-w-md">
-                    Almost there! Just a few more details to start your colocation journey
-                    and manage your shared piggy bank effortlessly.
+                    Make the necessary changes to keep your colocation details up to date
+                    and ensure smooth management of your shared piggy bank.
                 </p>
 
             </div>
@@ -102,7 +109,7 @@
                     <i class="fas fa-user-edit text-4xl text-indigo-600 mb-3"></i>
 
                     <h1 class="text-3xl font-bold">
-                        Complete Profile
+                        Edit Profile
                     </h1>
 
                     <p class="text-gray-500">
@@ -124,7 +131,7 @@
                     </div>
                 @endif
 
-                @if(session('success'))
+                @if (session('success'))
                     <div class="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
                         <i class="fas fa-check-circle mr-2"></i>
                         {{ session('success') }}
@@ -140,7 +147,7 @@
                         onerror="if(this.src !== '{{ asset('image/shopping.png') }}') this.src='{{ asset('image/shopping.png') }}'">
                 </div>
 
-                <form method="POST" action="{{ route('complete-profile') }}" class="grid md:grid-cols-2 gap-5">
+                <form method="POST" action="/edit" class="grid md:grid-cols-2 gap-5">
                     @csrf
 
                     <input value="{{ old('firstname', $user->firstname ?? '') }}" id="first" name="firstname"
@@ -156,21 +163,25 @@
                     @enderror
 
                     <input value="{{ old('profile_image', $user->profile_image ?? '') }}" id="profile_image"
-                        name="profile_image" placeholder="Profile Image URL (Optional)" class="input md:col-span-2 @error('profile_image') border-red-500 @enderror">
+                        name="profile_image" placeholder="Profile Image URL (Optional)"
+                        class="input md:col-span-2 @error('profile_image') border-red-500 @enderror">
                     @error('profile_image')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
                     <select name="gender" class="input @error('gender') border-red-500 @enderror">
                         <option value="">Gender</option>
-                        <option value="male" {{ old('gender', $user->gender ?? '') == 'male' ? 'selected' : '' }}>Male</option>
-                        <option value="female" {{ old('gender', $user->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="male" {{ old('gender', $user->gender ?? '') == 'male' ? 'selected' : '' }}>Male
+                        </option>
+                        <option value="female" {{ old('gender', $user->gender ?? '') == 'female' ? 'selected' : '' }}>
+                            Female</option>
                     </select>
                     @error('gender')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
-                    <input value="{{ old('cin', $user->cin ?? '') }}" name="cin" placeholder="CIN" class="input @error('cin') border-red-500 @enderror">
+                    <input value="{{ old('cin', $user->cin ?? '') }}" name="cin" placeholder="CIN"
+                        class="input @error('cin') border-red-500 @enderror">
                     @error('cin')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
@@ -189,23 +200,30 @@
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
-                    <input value="{{ old('birth_date', $user->birth_date ?? '') }}" type="date" name="birth_date" class="input @error('birth_date') border-red-500 @enderror">
+                    <input value="{{ old('birth_date', $user->birth_date ?? '') }}" type="date" name="birth_date"
+                        class="input @error('birth_date') border-red-500 @enderror">
                     @error('birth_date')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
                     <select name="type_occupation" class="input @error('type_occupation') border-red-500 @enderror">
                         <option value="">Occupation Type</option>
-                        <option value="work" {{ old('type_occupation', $user->type_occupation ?? '') == 'work' ? 'selected' : '' }}>Work</option>
-                        <option value="student" {{ old('type_occupation', $user->type_occupation ?? '') == 'student' ? 'selected' : '' }}>Student</option>
-                        <option value="other" {{ old('type_occupation', $user->type_occupation ?? '') == 'other' ? 'selected' : '' }}>Other</option>
+                        <option value="work"
+                            {{ old('type_occupation', $user->type_occupation ?? '') == 'work' ? 'selected' : '' }}>Work
+                        </option>
+                        <option value="student"
+                            {{ old('type_occupation', $user->type_occupation ?? '') == 'student' ? 'selected' : '' }}>
+                            Student</option>
+                        <option value="other"
+                            {{ old('type_occupation', $user->type_occupation ?? '') == 'other' ? 'selected' : '' }}>Other
+                        </option>
                     </select>
                     @error('type_occupation')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
-                    <input value="{{ old('occupation', $user->occupation ?? '') }}" name="occupation" placeholder="Occupation"
-                        class="input md:col-span-2 @error('occupation') border-red-500 @enderror">
+                    <input value="{{ old('occupation', $user->occupation ?? '') }}" name="occupation"
+                        placeholder="Occupation" class="input md:col-span-2 @error('occupation') border-red-500 @enderror">
                     @error('occupation')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
@@ -213,18 +231,12 @@
                     <input value="{{ $user->email }}" type="email" name="email" placeholder="Email" disabled
                         class="input bg-gray-100">
 
-                    <input value="{{ old('phone', $user->phone ?? '') }}" name="phone" placeholder="Phone" class="input @error('phone') border-red-500 @enderror">
+                    <input value="{{ old('phone', $user->phone ?? '') }}" name="phone" placeholder="Phone"
+                        class="input @error('phone') border-red-500 @enderror">
                     @error('phone')
                         <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
                     @enderror
 
-                    <input type="password" name="password" placeholder="Password" class="input @error('password') border-red-500 @enderror">
-                    @error('password')
-                        <p class="error-text md:col-span-2 -mt-2">{{ $message }}</p>
-                    @enderror
-
-                    <input type="password" name="password_confirmation" placeholder="Confirm Password" class="input">
-                    
                     <button type="submit" class="btn-main text-white py-3 rounded-xl font-semibold md:col-span-2">
                         <i class="fas fa-save mr-2"></i>
                         Complete Profile
@@ -265,10 +277,10 @@
             try {
                 const res = await fetch("https://countriesnow.space/api/v0.1/countries");
                 const datas = await res.json();
-                
+
                 // Get the currently selected country from old input or user data
                 const selectedCountry = "{{ old('country', $user->country ?? '') }}";
-                
+
                 datas.data.forEach(element => {
                     const selected = (element.iso2 === selectedCountry) ? 'selected' : '';
                     document.querySelector('#country').insertAdjacentHTML('beforeend',
@@ -288,14 +300,14 @@
             try {
                 const res = await fetch("https://countriesnow.space/api/v0.1/countries");
                 const datas = await res.json();
-                
+
                 datas.data.forEach(coun => {
                     if (coun.iso2 == countryCode) {
                         document.querySelector('#city').innerHTML = '<option value="">Select City</option>';
-                        
+
                         // Get the currently selected city from old input or user data
                         const selectedCity = "{{ old('city', $user->city ?? '') }}";
-                        
+
                         for (let i = 0; i < coun.cities.length; i++) {
                             const selected = (coun.cities[i] === selectedCity) ? 'selected' : '';
                             document.querySelector('#city').insertAdjacentHTML('beforeend',
@@ -332,7 +344,7 @@
         function updateInitials() {
             const firstVal = first.value.trim();
             const lastVal = last.value.trim();
-            
+
             if (firstVal.length > 0 && lastVal.length > 0) {
                 profile.innerHTML = firstVal[0].toUpperCase() + lastVal[0].toUpperCase();
             } else if (firstVal.length > 0) {
@@ -361,7 +373,7 @@
                 profile.style.display = 'none';
                 profileimg.style.display = 'flex';
                 profileimg.src = profile_image.value;
-                
+
                 // Handle image loading error
                 profileimg.onerror = function() {
                     this.src = '{{ asset('image/shopping.png') }}';
