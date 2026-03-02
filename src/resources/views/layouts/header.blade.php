@@ -47,16 +47,10 @@
 
                 {{-- Logout --}}
                 <a href="/logout"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     class="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-full hover:from-red-600 hover:to-red-700 transition shadow-md hover:shadow-lg flex items-center gap-1">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="hidden md:inline">Logout</span>
                 </a>
-
-                {{-- Hidden Logout Form --}}
-                <form id="logout-form" action="/logout" method="POST" class="hidden">
-                    @csrf
-                </form>
 
             @endauth
 

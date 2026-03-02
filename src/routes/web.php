@@ -45,7 +45,6 @@ Route::middleware(['auth.custom', 'profile'])->group(function () {
 });
 
 Route::middleware(['auth.custom'])->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/complete-profile', [ProfileController::class, 'showForm'])->name('complete-profile');
     Route::get('/verifier-profile', [ProfileController::class, 'showVerifier'])->name('verifier-profile');
     Route::post('/complete-profile', [ProfileController::class, 'updateProfile']);
@@ -58,4 +57,9 @@ Route::middleware(['permission:1'])->group(function () {
     Route::post('/unban', [ManagementController::class, 'unban']);
 });
 
+Route::middleware(['ban'])->group(function () {
+    Route::get('/faild', [ProfileController::class, 'ban'])->name('ban');
+});
+
 Route::get('/hyk', [DevController::class, 'index']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

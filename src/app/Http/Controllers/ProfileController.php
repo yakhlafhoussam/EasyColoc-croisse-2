@@ -178,4 +178,9 @@ class ProfileController extends Controller
 
         return redirect('/')->with('success', 'The profile was edited successfully!');
     }
+
+    public function ban()
+    {
+        return view('auth.banned');
+    }
 }

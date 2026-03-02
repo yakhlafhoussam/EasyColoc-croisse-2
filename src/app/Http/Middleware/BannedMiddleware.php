@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthMiddleware
+class BannedMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,10 +18,6 @@ class AuthMiddleware
     {
         if (!Auth::check()) {
             return redirect('/welcome');
-        }
-
-        if (User::where('id', Auth::id())->first()->is_banned != 0) {
-            return redirect('/faild');
         }
 
         return $next($request);
