@@ -30,11 +30,10 @@ class InvitationController extends Controller
 
         $check = Invitation::where('email', $request->email)->where('status', '!=', 2)->first();
 
-        $expires = $check->expires_at->getTimestamp();
-
         $now = time();
 
         if ($check) {
+            $expires = $check->expires_at->getTimestamp();
             if ($check && $check->status == 0 && $expires >= $now) {
                 return back()->with('warning', 'Invitation already sent and still pending');
             } elseif ($check && $check->status == 1) {

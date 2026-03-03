@@ -15,7 +15,7 @@ class Categorie extends Model
 
     public function colocation()
     {
-        return $this->belongsTo(Colocation::class);
+        return $this->hasMany(Colocation::class);
     }
 
     public function expenses()
