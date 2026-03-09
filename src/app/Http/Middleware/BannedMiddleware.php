@@ -20,6 +20,10 @@ class BannedMiddleware
             return redirect('/welcome');
         }
 
+        if (User::where('id', Auth::id())->first()->is_banned != 1) {
+            return redirect('/');
+        }
+
         return $next($request);
     }
 }
